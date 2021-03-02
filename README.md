@@ -7,4 +7,6 @@
 6. Delete
 7. Logout
 
+Import DB: latihan-form.sql
+
 Folder Angular [form-angular](https://github.com/mafr017/latihan-form/tree/master/form-angular)
