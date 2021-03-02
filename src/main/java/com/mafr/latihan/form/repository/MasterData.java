@@ -30,12 +30,12 @@ public class MasterData {
                 (resultSet, rowNumber) -> {
                     Members members = new Members();
                     members.setMemberid(resultSet.getInt("memberid"));
-                    members.setProductName(resultSet.getString("name"));
-                    members.setSupplierId(resultSet.getInt("birthday"));
-                    members.setCategoryId(resultSet.getInt("parentsname"));
-                    members.setQuantityperUnit(resultSet.getString("phonephone"));
-                    members.setUnitPrice(resultSet.getInt("email"));
-                    members.setUnitsInStock(resultSet.getInt("hadlesson"));
+                    members.setName(resultSet.getString("name"));
+                    members.setBirthday(resultSet.getDate("birthday"));
+                    members.setParentsname(resultSet.getString("parentsname"));
+                    members.setPhone(resultSet.getInt("phone"));
+                    members.setEmail(resultSet.getString("email"));
+                    members.setHadlesson(resultSet.getBoolean("hadlesson"));
                     return members; },
                 cari);
     }
