@@ -32,8 +32,8 @@ public class HomeAction {
         } else {
             masterData.updateIsLogin(users);
             Users newUser = masterData.checkUsers(users);
-            System.out.println("id " + newUser.getId() + " username " + newUser.getUsername() +
-                    " password " + newUser.getPassword() + " islogin " + newUser.getIslogin());
+//            System.out.println("id " + newUser.getId() + " username " + newUser.getUsername() +
+//                    " password " + newUser.getPassword() + " islogin " + newUser.getIslogin());
             if (newUser.getIslogin() == true) {
                 status.put("status", true);
                 status.put("user", newUser);

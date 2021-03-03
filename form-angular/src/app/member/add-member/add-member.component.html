@@ -1,11 +1,11 @@
 <p>add-member works!</p>
-<form class="form-horizontal" method="post">
+<form class="form-horizontal">
   <fieldset>
     <legend>Product</legend>
     <div class="form-group">
-      <label for="memberid" class="col">Member ID</label>
+      <label for="memberid" class="col">Member ID (8 Digit)</label>
       <div class="col">
-        <input type="text" class="form-control" id="memberid" placeholder="Member ID">
+        <input type="text" class="form-control" id="memberid" placeholder="ex: 12345678">
       </div>
     </div>
     <div class="form-group">
@@ -15,10 +15,10 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="birthday" class="col">Birthday</label>
+      <label for="birthday" class="col">Birthday (Year-Month-Day)</label>
       <div class="col">
-        <input class="form-control calendar" id="birthday" name="birthday" placeholder="yyyy-mm-dd" [(ngModel)]="model"
-          ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+        <input class="form-control calendar" id="birthday" name="birthday" placeholder="ex: 1999-01-22"
+          [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
       </div>
     </div>
     <div class="form-group">
@@ -30,24 +30,78 @@
     <div class="form-group">
       <label for="phone" class="col">Phone Number</label>
       <div class="col">
-        <input type="text" class="form-control" id="phone" placeholder="Phone Number">
+        <input type="text" class="form-control" id="phone" placeholder="ex: 085123456789">
       </div>
     </div>
     <div class="form-group">
       <label for="email" class="col">E-mail</label>
       <div class="col">
-        <input type="email" class="form-control" id="email" placeholder="your@email.com">
+        <input type="email" class="form-control" id="email" placeholder="ex: your@email.com">
       </div>
     </div>
     <div class="form-group">
       <div class="form-inline">
         <label for="hadlesson" class="col d-flex justify-content-end">Had a Music Lesson</label>
         <div class="col d-flex justify-content-start">
-          <input type="checkbox" class="form-control" id="hadlesson">
+          <input type="checkbox" class="form-control" id="hadlesson" [checked]="myVar2" (change)="myVar2 = !myVar2">
         </div>
       </div>
-      <div class="col">
-        <hr>
+      <div class="row" style="height: auto;" *ngIf="!myVar2? '' : 'disabled'">
+        <div class="col-1"></div>
+        <div class="col border">
+          <table style="margin: auto;">
+            <td>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Gitar Klasik</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Gitar Pop</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Gitar Elektrik</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Bass Elektrik</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Piano Klasik</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Piano Pop</td>
+              </tr>
+            </td>
+            <td style="width: 10%;"></td>
+            <td>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Keyboard</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Drum</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Biola</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Vocal</td>
+              </tr>
+              <tr style="line-height: 40px;">
+                <td><input type="checkbox"></td>
+                <td style="text-align: left;">Terapi Musik Autis</td>
+              </tr>
+            </td>
+          </table>
+        </div>
+        <div class="col-1"></div>
       </div>
     </div>
 
@@ -60,5 +114,6 @@
   </fieldset>
 </form>
 
-<hr />
+<hr>
 <pre>Model: {{ model | json }}</pre>
+<hr>

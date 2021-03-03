@@ -22,10 +22,6 @@ export class MemberComponent implements OnInit {
       this.listMember = data.members;
       this.listLesson = data.lesson;
 
-      // this.resultLesson.push("sdsad");
-      // this.resultLesson.push("xczcxzc");
-      // console.log("array " + this.resultLesson[1]);
-
       this.listLesson.forEach(element => {
         var result = "";
         if(element.gtrklasik == true) {
@@ -65,6 +61,7 @@ export class MemberComponent implements OnInit {
         this.resultLesson.push(result);
         console.log("ini resultlesson = " + this.resultLesson);
       });
+      
     });
 
     

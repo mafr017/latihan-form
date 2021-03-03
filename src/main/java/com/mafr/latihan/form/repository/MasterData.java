@@ -147,7 +147,6 @@ public class MasterData {
                     res.add(lessonArr);
                     return res;},
                 cari);
-        System.out.println(memberArr.toString());
         return res;
     }
 

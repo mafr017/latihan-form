@@ -16,7 +16,7 @@
   Search: <input type="text" placeholder="Product Name">
 </div>
 <br> -->
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover table-bordered table-responsive">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -32,15 +32,15 @@
   </thead>
   <tbody>
     <tr *ngFor="let mbr of listMember; let indx = index;">
-      <td>{{indx + 1}}</td>
-      <td>{{mbr.memberid}}</td>
-      <td>{{mbr.name}}</td>
-      <td>{{mbr.birthday}}</td>
-      <td>{{mbr.parentsname}}</td>
-      <td>0{{mbr.phone}}</td>
-      <td>{{mbr.email}}</td>
-      <td>{{mbr.hadlesson? resultLesson[indx] : 'No'}}</td>
-      <td>
+      <td style="vertical-align: middle">{{indx + 1}}</td>
+      <td style="vertical-align: middle">{{mbr.memberid}}</td>
+      <td style="vertical-align: middle">{{mbr.name}}</td>
+      <td style="vertical-align: middle">{{mbr.birthday}}</td>
+      <td style="vertical-align: middle">{{mbr.parentsname}}</td>
+      <td style="vertical-align: middle">0{{mbr.phone}}</td>
+      <td style="vertical-align: middle">{{mbr.email}}</td>
+      <td style="vertical-align: middle">{{mbr.hadlesson? resultLesson[indx] : 'No'}}</td>
+      <td style="vertical-align: middle">
         <button>Edit</button>
         <br>
         <button class="text-danger">Delete</button>
