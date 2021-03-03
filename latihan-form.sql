@@ -46,6 +46,7 @@ CREATE TABLE `lesson` (
 
 LOCK TABLES `lesson` WRITE;
 /*!40000 ALTER TABLE `lesson` DISABLE KEYS */;
+INSERT INTO `lesson` VALUES (12345678,1,0,0,0,1,0,1,0,0,0,0),(12345679,0,0,0,0,0,0,0,0,0,0,0);
 /*!40000 ALTER TABLE `lesson` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `members` (
   `name` varchar(100) NOT NULL,
   `birthday` date DEFAULT NULL,
   `parentsname` varchar(100) NOT NULL,
-  `phone` int NOT NULL,
+  `phone` bigint(12) unsigned zerofill DEFAULT NULL,
   `email` varchar(100) NOT NULL,
   `hadlesson` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`memberid`)
@@ -74,6 +75,7 @@ CREATE TABLE `members` (
 
 LOCK TABLES `members` WRITE;
 /*!40000 ALTER TABLE `members` DISABLE KEYS */;
+INSERT INTO `members` VALUES (12345678,'admin','2021-03-03','parentadmin',085123456789,'admin@admin.com',1),(12345679,'ABC','1998-04-09','parentABC',085123456789,'ABC@abc.com',0);
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,6 +102,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (111,'admin','admin',1,'16:20:46'),(123,'ABC','12345',1,'13:33:54'),(321,'CBA','54321',0,NULL),(456,'DEF','67890',0,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-02 16:06:45
+-- Dump completed on 2021-03-03 16:22:49

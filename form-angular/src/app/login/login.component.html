@@ -4,14 +4,14 @@
   <div class="col-sm-4 text-left">
     <div class="form-group">
       <label for="username"><b>Username</b></label>
-      <input type="text" class="form-control" id="username" #username placeholder="Your username">
+      <input type="text" class="form-control" id="username" #username placeholder="Your username" value="admin">
     </div>
     <div class="form-group">
       <label for="password"><b>Password</b></label>
-      <input type="password" class="form-control" id="password" #password placeholder="Your password">
+      <input type="password" class="form-control" id="password" #password placeholder="Your password" value="admin">
     </div>
     <div class="form-group text-center">
-      <button (click)="onLogin(username, password)" type="button" class="btn btn-success">Login</button>
+      <button (click)="onLogin(username, password)" type="button" class="btn btn-success" autofocus>Login</button>
     </div>
   </div>
   <div class="col-sm-4"></div>

@@ -26,7 +26,7 @@
       <th scope="col">Parents Name</th>
       <th scope="col">Phone</th>
       <th scope="col">E-mail</th>
-      <th scope="col">Had lesson</th>
+      <th scope="col">Had a music lesson?</th>
       <th scope="col">Control</th>
     </tr>
   </thead>
@@ -39,7 +39,7 @@
       <td>{{mbr.parentsname}}</td>
       <td>{{mbr.phone}}</td>
       <td>{{mbr.email}}</td>
-      <td>{{mbr.hadlesson}}</td>
+      <td>{{mbr.hadlesson? 'Yes' : 'No'}}</td>
       <td>
         <button>Edit</button>
         <br>
