@@ -11,7 +11,7 @@
       <input type="password" class="form-control" id="password" #password placeholder="Your password">
     </div>
     <div class="form-group text-center">
-      <button type="button" class="btn btn-success">Login</button>
+      <button (click)="onLogin(username, password)" type="button" class="btn btn-success">Login</button>
     </div>
   </div>
   <div class="col-sm-4"></div>

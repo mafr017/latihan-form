@@ -1,7 +1,7 @@
 package com.mafr.latihan.form.model;
 
 public class Lesson {
-    private String memberid;
+    private int memberid;
     private boolean gtrklasik;
     private boolean gtrpop;
     private boolean gtrelektrik;
@@ -14,11 +14,11 @@ public class Lesson {
     private boolean vocal;
     private boolean terapimusikautis;
 
-    public String getMemberid() {
+    public int getMemberid() {
         return memberid;
     }
 
-    public void setMemberid(String memberid) {
+    public void setMemberid(int memberid) {
         this.memberid = memberid;
     }
 

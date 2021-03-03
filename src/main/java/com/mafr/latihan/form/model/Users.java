@@ -32,7 +32,7 @@ public class Users {
         this.password = password;
     }
 
-    public boolean isIslogin() {
+    public boolean getIslogin() {
         return islogin;
     }
 

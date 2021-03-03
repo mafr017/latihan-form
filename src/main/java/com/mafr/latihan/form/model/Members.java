@@ -1,13 +1,17 @@
 package com.mafr.latihan.form.model;
 
+import javax.validation.constraints.NotEmpty;
 import java.sql.Date;
 
 public class Members {
     private int memberid;
+    @NotEmpty(message = "Tidak boleh kosong!")
     private String name;
     private Date birthday;
+    @NotEmpty(message = "Tidak boleh kosong!")
     private String parentsname;
-    private int phone;
+    private long phone;
+    @NotEmpty(message = "Tidak boleh kosong!")
     private String email;
     private boolean hadlesson;
 
@@ -43,11 +47,11 @@ public class Members {
         this.parentsname = parentsname;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

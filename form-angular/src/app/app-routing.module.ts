@@ -1,18 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './auth/auth-guard.service';
+import { AuthService } from './auth/auth.service';
 import { LoginComponent } from './login/login.component';
 import { AddMemberComponent } from './member/add-member/add-member.component';
 import { MemberComponent } from './member/member.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/addmember', pathMatch: 'full' },
-  { path: 'listmember', component: MemberComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'listmember', canActivate: [AuthGuardService], component: MemberComponent },
   { path: 'addmember', component: AddMemberComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [
+    AuthGuardService,
+    AuthService
+  ]
 })
 export class AppRoutingModule { }
