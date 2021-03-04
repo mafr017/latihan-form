@@ -1,7 +1,7 @@
 <p>add-member works!</p>
 <form class="form-horizontal" [formGroup]="memberForm">
   <fieldset>
-    <legend>Product</legend>
+    <legend>{{this.id == undefined || this.id == null ? 'Register' : 'Update'}} Member</legend>
     <div class="form-group">
       <label for="memberid" class="col">Member ID (8 Digit)</label>
       <div class="col">

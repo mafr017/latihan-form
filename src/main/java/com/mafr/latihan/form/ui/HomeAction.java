@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -60,18 +57,44 @@ public class HomeAction {
     }
 
     @GetMapping("api/listmemberjson")
-    public ResponseEntity<Map> fetchMembersLeftJoinJDBC(@RequestParam(required = false, name = "cari") String cari) {
+    public ResponseEntity<Map> listmemberjson(@RequestParam(required = false, name = "cari") String cari) {
         Map<String, Object> result = new HashMap<>();
         result.put("members", masterData.fetchMembersLeftJoinJDBC(cari).get(0));
         result.put("lesson", masterData.fetchMembersLeftJoinJDBC(cari).get(1));
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/api/datamemberjson/{id}")
+    public ResponseEntity<Map> datamemberjson(@PathVariable(required = false, name = "id") int id) {
+        Map<String, Object> result = new HashMap<>();
+        result.put("members", masterData.fetchMemberByIdJDBC(id).get(0));
+        result.put("lesson", masterData.fetchMemberByIdJDBC(id).get(1));
+        return ResponseEntity.ok(result);
+    }
+
     @PostMapping("/api/addmemberjson")
-    public ResponseEntity<DoubleBody> saveproductjson(@RequestBody DoubleBody dbBy) {
+    public ResponseEntity<Lesson> addmemberjson(@RequestBody DoubleBody dbBy) {
         System.out.println(dbBy.lesson.getMemberid() + " : " + dbBy.members.getName() + " : " + dbBy.members.getBirthday());
         masterData.insertMemberJdbc(dbBy.members, dbBy.lesson);
-        return ResponseEntity.ok(dbBy);
+        return ResponseEntity.ok(dbBy.lesson);
+    }
+
+    @PostMapping("/api/updatememberjson")
+    public ResponseEntity<Lesson> updatememberjson(@RequestBody DoubleBody dbBy) {
+        System.out.println(dbBy.lesson.getMemberid() + " : " + dbBy.members.getName() + " : " + dbBy.members.getBirthday());
+        masterData.updateMemberJdbc(dbBy.members, dbBy.lesson);
+        return ResponseEntity.ok(dbBy.lesson);
+    }
+
+    @DeleteMapping("/api/deletememberjson/{id}")
+    public ResponseEntity<Map> deletememberjson(@PathVariable("id") int id) {
+        System.out.println("Proses delete " + id);
+        masterData.deleteMemberJdbc(id);
+        String cari = "";
+        Map<String, Object> result = new HashMap<>();
+        result.put("members", masterData.fetchMembersLeftJoinJDBC(cari).get(0));
+        result.put("lesson", masterData.fetchMembersLeftJoinJDBC(cari).get(1));
+        return ResponseEntity.ok(result);
     }
 
 }

@@ -14,7 +14,10 @@ import { MemberService } from '../member.service';
 export class AddMemberComponent implements OnInit {
 
   memberForm!: FormGroup;
+  listMember!: Members[];
+  listLesson!: Lesson[];
 
+  id!: bigint;
   myVar2 = false;
   tessss = "";
 
@@ -36,6 +39,37 @@ export class AddMemberComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe( rute => {
+      this.id = rute.id;
+      console.log("id=" + this.id);
+      if (this.id) {
+        this.memberService.getMemberById(this.id).subscribe((data : any) => {
+          this.listMember = data.members;
+          this.listLesson = data.lesson;
+          if (data) {
+            this.memberForm.get('memberid')?.setValue(this.listMember[0].memberid)
+            this.memberForm.get('name')?.setValue(this.listMember[0].name)
+            this.memberForm.get('birthday')?.setValue(this.listMember[0].birthday)
+            this.memberForm.get('parentsname')?.setValue(this.listMember[0].parentsname)
+            this.memberForm.get('phone')?.setValue(this.listMember[0].phone)
+            this.memberForm.get('email')?.setValue(this.listMember[0].email)
+            this.memberForm.get('hadlesson')?.setValue(this.listMember[0].hadlesson)
+            //checkbox group
+            this.memberForm.get('gtrklasik')?.setValue(this.listLesson[0].gtrklasik)
+            this.memberForm.get('gtrpop')?.setValue(this.listLesson[0].gtrpop)
+            this.memberForm.get('gtrelektrik')?.setValue(this.listLesson[0].gtrelektrik)
+            this.memberForm.get('basselektrik')?.setValue(this.listLesson[0].basselektrik)
+            this.memberForm.get('pianoklasik')?.setValue(this.listLesson[0].pianoklasik)
+            this.memberForm.get('pianopop')?.setValue(this.listLesson[0].pianopop)
+            this.memberForm.get('keyboard')?.setValue(this.listLesson[0].keyboard)
+            this.memberForm.get('drum')?.setValue(this.listLesson[0].drum)
+            this.memberForm.get('biola')?.setValue(this.listLesson[0].biola)
+            this.memberForm.get('vocal')?.setValue(this.listLesson[0].vocal)
+            this.memberForm.get('terapimusikautis')?.setValue(this.listLesson[0].terapimusikautis)
+          }
+        });
+      }
+    })
   }
 
   simpan() {
@@ -64,14 +98,25 @@ export class AddMemberComponent implements OnInit {
       lesson.vocal = this.memberForm?.controls.vocal.value;
       lesson.terapimusikautis = this.memberForm?.controls.terapimusikautis.value;
       // console.log(lesson.gtrklasik);
-      this.memberService.addMember(members, lesson).subscribe( hasil => {
-        console.log(hasil);
-        alert('Registrasi berhasil!');
-        this.router.navigateByUrl('/login');
-      }, error => {
-        console.log(error);
-        alert('Registrasi gagal!');
-      });
+      if (this.id == undefined || this.id == null) {
+        this.memberService.addMember(members, lesson).subscribe( hasil => {
+          console.log(hasil);
+          alert('Registrasi berhasil!');
+          this.router.navigateByUrl('/login');
+        }, error => {
+          console.log(error);
+          alert('Registrasi gagal!');
+        });
+      } else {
+        this.memberService.updateMember(members, lesson).subscribe( hasil => {
+          console.log(hasil);
+          alert('Update berhasil!');
+          this.router.navigateByUrl('/login');
+        }, error => {
+          console.log(error);
+          alert('Update gagal!');
+        });
+      }
     } else {
       alert("Wajib diisi!");
     }

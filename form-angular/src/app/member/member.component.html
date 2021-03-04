@@ -41,9 +41,9 @@
       <td style="vertical-align: middle">{{mbr.email}}</td>
       <td style="vertical-align: middle">{{mbr.hadlesson? resultLesson[indx] : 'No'}}</td>
       <td style="vertical-align: middle">
-        <button>Edit</button>
+        <button routerLink="/addmember/{{mbr.memberid}}">Edit</button>
         <br>
-        <button class="text-danger">Delete</button>
+        <button class="text-danger" (click)="hapus(mbr.memberid)">Delete</button>
       </td>
     </tr>
   </tbody>
