@@ -177,17 +177,16 @@ public class MasterData {
 
     public void updateMemberJdbc(Members members, Lesson lesson) {
         final String query1 = "UPDATE members SET" +
-                " memberid = ?, name = ?, birthday = ?, parentsname = ?, phone = ?, email = ?, hadlesson = ?" +
+                " name = ?, birthday = ?, parentsname = ?, phone = ?, email = ?, hadlesson = ?" +
                 " WHERE memberid = ?";
 
         final String query2 = "UPDATE lesson SET" +
-                " memberid = ?, gtrklasik = ?, gtrpop = ?, gtrelektrik = ?, basselektrik = ?, pianoklasik = ?," +
+                " gtrklasik = ?, gtrpop = ?, gtrelektrik = ?, basselektrik = ?, pianoklasik = ?," +
                 " pianopop = ?, keyboard = ?, drum = ?, biola = ?, vocal = ?, terapimusikautis = ?" +
                 " WHERE memberid = ?";
 
         try {
             jdbcTemplate.update(query1,
-                    members.getMemberid(),
                     members.getName(),
                     members.getBirthday(),
                     members.getParentsname(),
@@ -197,7 +196,6 @@ public class MasterData {
                     members.getMemberid());
 
             jdbcTemplate.update(query2,
-                    lesson.getMemberid(),
                     lesson.isGtrklasik(),
                     lesson.isGtrpop(),
                     lesson.isGtrelektrik(),

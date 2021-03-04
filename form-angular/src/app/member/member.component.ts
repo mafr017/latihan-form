@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Lesson } from '../model/lesson';
 import { Members } from '../model/members';
@@ -15,7 +16,14 @@ export class MemberComponent implements OnInit {
   listLesson!: Lesson[];
   resultLesson: string[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, private memberService: MemberService) {}
+  searchMemberForm!: FormGroup;
+  id!: string;
+
+  constructor(private route: ActivatedRoute, private router: Router, private memberService: MemberService) {
+    this.searchMemberForm = new FormGroup( {
+      memberName: new FormControl(null)
+    });
+  }
 
   ngOnInit(): void {
     this.memberService.getMemberList('').subscribe((data : any) => {
@@ -34,6 +42,21 @@ export class MemberComponent implements OnInit {
 
       this.getArrLesson();
     });
+  }
+
+  cari() {
+    this.id = this.searchMemberForm?.controls.memberName.value;
+    console.log("Cari data " + this.id);
+    if (this.id) {
+      this.memberService.getMemberList(this.id).subscribe((data : any) => {
+        this.listMember = data.members;
+        this.listLesson = data.lesson;
+        
+        this.getArrLesson();
+      });
+    } else {
+      this.ngOnInit();
+    }
   }
 
   getArrLesson() {

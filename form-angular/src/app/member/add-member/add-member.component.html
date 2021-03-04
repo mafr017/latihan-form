@@ -6,7 +6,7 @@
       <label for="memberid" class="col">Member ID (8 Digit)</label>
       <div class="col">
         <input type="text" class="form-control" id="memberid" placeholder="ex: 12345678" [formControlName]="'memberid'"
-          maxlength="8" required>
+          maxlength="8" [readonly]="this.id == undefined ? false : true" required>
         <span *ngIf="!memberForm.get('memberid')?.valid &&
           memberForm.get('memberid')?.touched" class="text-danger">Wajib diisi dengan angka 8 digit!</span>
       </div>

@@ -1,21 +1,20 @@
 <p>member works!</p>
 <hr>
-<h2 class="text-warning">List of Product</h2>
-<!-- <hr>
+<h2 class="text-warning">List of Member</h2>
+<hr>
 <form>
-  <div class="form-group">
-    <label for="cari">Product Name</label>
-    <div>
-      <input type="text" class="form-control" id="cari" name="cari" placeholder="Product Name">
-    </div>
+  <div class="form-group form-inline d-flex justify-content-center" [formGroup]="searchMemberForm">
+    <label for="cari">Search by Member Name</label>
+    <div style="width: 5%;"></div>
+    <input type="text" style="width: 50%;" class="form-control" id="cari" name="cari" placeholder="Member Name"
+      [formControlName]="'memberName'" (input)="cari()">
   </div>
-  <input class="btn btn-info" type="submit" value="Search">
 </form>
 <hr>
-<div>
+<!-- <div>
   Search: <input type="text" placeholder="Product Name">
-</div>
-<br> -->
+</div> -->
+<br>
 <table class="table table-striped table-hover table-bordered table-responsive">
   <thead>
     <tr>
