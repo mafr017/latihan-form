@@ -57,9 +57,9 @@ export class MemberComponent implements OnInit {
         if(element.terapimusikautis == true) {
           result += "[Terapi Musik Autis]";
         }
-        console.log("ini result = " + result);
+        // console.log("ini result = " + result);
         this.resultLesson.push(result);
-        console.log("ini resultlesson = " + this.resultLesson);
+        // console.log("ini resultlesson = " + this.resultLesson);
       });
       
     });

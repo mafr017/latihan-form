@@ -3,7 +3,7 @@ export class Members {
     name!: string;
     birthday!: Date;
     parentsname!: string;
-    phone!: number;
+    phone!: bigint;
     email!: string;
     hadlesson!: boolean;
 }

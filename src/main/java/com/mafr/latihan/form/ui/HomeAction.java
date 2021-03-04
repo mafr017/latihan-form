@@ -1,5 +1,6 @@
 package com.mafr.latihan.form.ui;
 
+import com.mafr.latihan.form.model.Lesson;
 import com.mafr.latihan.form.model.Members;
 import com.mafr.latihan.form.model.Users;
 import com.mafr.latihan.form.repository.MasterData;
@@ -16,6 +17,11 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+class DoubleBody {
+    public Members members;
+    public Lesson lesson;
+}
 
 @Controller
 public class HomeAction {
@@ -59,6 +65,13 @@ public class HomeAction {
         result.put("members", masterData.fetchMembersLeftJoinJDBC(cari).get(0));
         result.put("lesson", masterData.fetchMembersLeftJoinJDBC(cari).get(1));
         return ResponseEntity.ok(result);
+    }
+
+    @PostMapping("/api/addmemberjson")
+    public ResponseEntity<DoubleBody> saveproductjson(@RequestBody DoubleBody dbBy) {
+        System.out.println(dbBy.lesson.getMemberid() + " : " + dbBy.members.getName() + " : " + dbBy.members.getBirthday());
+        masterData.insertMemberJdbc(dbBy.members, dbBy.lesson);
+        return ResponseEntity.ok(dbBy);
     }
 
 }

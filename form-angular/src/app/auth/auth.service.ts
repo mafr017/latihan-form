@@ -19,7 +19,7 @@ export class AuthService {
 
     this.httpClient.post(environment.baseUrl + 'loginjson', this.users).pipe(map( data => data ))
     .subscribe((data : any) => {
-      console.log("ini " + data.user.islogin);
+      // console.log("ini " + data.user.islogin);
       this.loggedIn = data.user.islogin;
       this.router.navigate(["/listmember"]);
     });

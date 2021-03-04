@@ -69,44 +69,6 @@ public class MasterData {
                 cari);
     }
 
-//    public List<Object> fetchMembersLeftJoinJDBC(String cari) {
-//        List<Object> res = new ArrayList<>();
-//        if (ObjectUtils.isEmpty(cari)) {
-//            cari = "";
-//        }
-//        final String query = " SELECT * FROM members LEFT JOIN lesson ON members.memberid = lesson.memberid" +
-//                " WHERE members.name LIKE CONCAT ('%', ?,'%');";
-//        return jdbcTemplate.query(
-//                query,
-//                (resultSet, rowNumber) -> {
-//                    Members members = new Members();
-//                    members.setMemberid(resultSet.getInt("memberid"));
-//                    members.setName(resultSet.getString("name"));
-//                    members.setBirthday(resultSet.getDate("birthday"));
-//                    members.setParentsname(resultSet.getString("parentsname"));
-//                    members.setPhone(resultSet.getLong("phone"));
-//                    members.setEmail(resultSet.getString("email"));
-//                    members.setHadlesson(resultSet.getBoolean("hadlesson"));
-//                    res.add(members);
-//
-//                    Lesson lesson = new Lesson();
-//                    lesson.setMemberid(resultSet.getInt("memberid"));
-//                    lesson.setGtrklasik(resultSet.getBoolean("gtrklasik"));
-//                    lesson.setGtrpop(resultSet.getBoolean("gtrpop"));
-//                    lesson.setGtrelektrik(resultSet.getBoolean("gtrelektrik"));
-//                    lesson.setBasselektrik(resultSet.getBoolean("basselektrik"));
-//                    lesson.setPianoklasik(resultSet.getBoolean("pianoklasik"));
-//                    lesson.setPianopop(resultSet.getBoolean("pianopop"));
-//                    lesson.setKeyboard(resultSet.getBoolean("keyboard"));
-//                    lesson.setDrum(resultSet.getBoolean("drum"));
-//                    lesson.setBiola(resultSet.getBoolean("biola"));
-//                    lesson.setVocal(resultSet.getBoolean("vocal"));
-//                    lesson.setTerapimusikautis(resultSet.getBoolean("terapimusikautis"));
-//                    res.add(lesson);
-//                    return res; },
-//                cari);
-//    }
-
     public List<Object> fetchMembersLeftJoinJDBC(String cari) {
         List<Object> res = new ArrayList<>();
         List<Object> memberArr = new ArrayList<>();
@@ -148,6 +110,42 @@ public class MasterData {
                     return res;},
                 cari);
         return res;
+    }
+
+    public void insertMemberJdbc(Members members, Lesson lesson) {
+        final String query1 = "INSERT INTO members" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+        final String query2 = "INSERT INTO lesson" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+        try {
+            jdbcTemplate.update(query1,
+                    members.getMemberid(),
+                    members.getName(),
+                    members.getBirthday(),
+                    members.getParentsname(),
+                    members.getPhone(),
+                    members.getEmail(),
+                    members.isHadlesson());
+
+            jdbcTemplate.update(query2,
+                    lesson.getMemberid(),
+                    lesson.isGtrklasik(),
+                    lesson.isGtrpop(),
+                    lesson.isGtrelektrik(),
+                    lesson.isBasselektrik(),
+                    lesson.isPianoklasik(),
+                    lesson.isPianopop(),
+                    lesson.isKeyboard(),
+                    lesson.isDrum(),
+                    lesson.isBiola(),
+                    lesson.isVocal(),
+                    lesson.isTerapimusikautis());
+            System.out.println("Input berhasil!");
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
     }
 
 }
