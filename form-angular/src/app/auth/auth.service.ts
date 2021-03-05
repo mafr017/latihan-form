@@ -22,6 +22,8 @@ export class AuthService {
       // console.log("ini " + data.user.islogin);
       this.loggedIn = data.user.islogin;
       this.router.navigate(["/listmember"]);
+    }, error => {
+      alert("Login gagal!");
     });
   }
 

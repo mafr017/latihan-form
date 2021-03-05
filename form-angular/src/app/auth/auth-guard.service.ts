@@ -23,6 +23,7 @@ export class AuthGuardService implements CanActivate {
         return true;
       } else {
         console.log("Access Denied...");
+        // alert("Login gagal!");
         this.router.navigate(['/']);
         return false;
       }

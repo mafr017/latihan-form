@@ -32,16 +32,20 @@ export class MemberComponent implements OnInit {
       
       this.getArrLesson();
     });
+    
   }
 
   hapus(idd: number) {
     console.log(idd);
-    this.memberService.deleteMemberById(idd).subscribe( (data : any) => {
-      this.listMember = data.members;
-      this.listLesson = data.lesson;
-
-      this.getArrLesson();
-    });
+    var conf = confirm("Apakah anda yakin menghapus data ini?");
+    if (conf) { 
+      this.memberService.deleteMemberById(idd).subscribe( (data : any) => {
+        this.listMember = data.members;
+        this.listLesson = data.lesson;
+  
+        this.getArrLesson();
+      });
+    }
   }
 
   cari() {
