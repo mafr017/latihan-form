@@ -22,8 +22,8 @@ export class AuthGuardService implements CanActivate {
       if (authenticated == true) {
         return true;
       } else {
+        alert("Anda harus login terlebih dahulu!");
         console.log("Access Denied...");
-        // alert("Login gagal!");
         this.router.navigate(['/']);
         return false;
       }
